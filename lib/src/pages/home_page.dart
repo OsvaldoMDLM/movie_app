@@ -22,7 +22,13 @@ class HomePage extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            CardSwiper(movies: moviesProvider.onDisplayMovies),
+            UpcomingSwiper(
+                movies: moviesProvider.upcomingMovies, title: 'Proximamente'),
+            NowPlayingmovie(
+                movies: moviesProvider.onDisplayMovies,
+                title: 'Ultimas', 
+                onNextPage: () => moviesProvider.getNowPlayingMovies()),
+            //CardSwiper(movies: moviesProvider.onDisplayMovies),
             MovieSlider(
               movies: moviesProvider.popularMovies, // populares,
               title: 'Populares', // opcional

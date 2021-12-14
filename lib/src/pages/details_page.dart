@@ -15,7 +15,9 @@ class DetailPage extends StatelessWidget {
             delegate: SliverChildListDelegate([
           _PosterAndTitle(movie),
           _Overview(movie),
-          CastingCards( movie.id ),
+          CastingCards(movie.id),
+          MoviesRecommend(
+              movieIdToRecommend: movie.id, title: 'Peliculas recomendadas'),
         ]))
       ],
     ));
@@ -110,7 +112,7 @@ class _PosterAndTitle extends StatelessWidget {
                       style: textTheme.caption,
                     )
                   ],
-                )
+                ),
               ],
             ),
           )

@@ -13,7 +13,10 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => MoviesProvider(), lazy: false,)
+        ChangeNotifierProvider(
+          create: (_) => MoviesProvider(),
+          lazy: false,
+        )
       ],
       child: App(),
     );
@@ -34,7 +37,10 @@ class App extends StatelessWidget {
             statusBarIconBrightness: Brightness.light),
       )),
       initialRoute: 'home',
-      routes: {'home': (_) => HomePage(), 'details': (_) => DetailPage()},
+      routes: {
+        'home': (_) => HomePage(),
+        'details': (_) => DetailPage(),
+      },
     );
   }
 }
