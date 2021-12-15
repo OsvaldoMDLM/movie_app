@@ -3,6 +3,8 @@ import 'package:movie_app/src/models/models.dart';
 import 'package:movie_app/src/widgets/widgets.dart';
 
 class DetailPage extends StatelessWidget {
+  const DetailPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     //todo cambiar la instancia  de movie
@@ -15,7 +17,9 @@ class DetailPage extends StatelessWidget {
             delegate: SliverChildListDelegate([
           _PosterAndTitle(movie),
           _Overview(movie),
-          CastingCards( movie.id ),
+          CastingCards(movie.id),
+          MoviesRecommend(
+              movieIdToRecommend: movie.id, title: 'Peliculas recomendadas'),
         ]))
       ],
     ));
@@ -55,8 +59,8 @@ class _PosterAndTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
           Hero(
@@ -64,13 +68,13 @@ class _PosterAndTitle extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'),
+                placeholder: const AssetImage('assets/no-image.jpg'),
                 image: NetworkImage(movie.fullPosterImg),
                 height: 200,
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Expanded(
@@ -85,6 +89,12 @@ class _PosterAndTitle extends StatelessWidget {
                 ),
                 Text(
                   movie.originalTitle,
+                  style: textTheme.subtitle1!.copyWith(fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Text(
+                  'Original language: ' + movie.originalLanguage,
                   style: textTheme.subtitle1!.copyWith(fontSize: 13),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -110,7 +120,7 @@ class _PosterAndTitle extends StatelessWidget {
                       style: textTheme.caption,
                     )
                   ],
-                )
+                ),
               ],
             ),
           )
@@ -127,7 +137,7 @@ class _Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Text(
           movie.overview,
           textAlign: TextAlign.justify,

@@ -5,6 +5,8 @@ import 'package:movie_app/src/widgets/widgets.dart';
 import 'package:movie_app/src/search/search_delegate.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context);
@@ -22,7 +24,13 @@ class HomePage extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            CardSwiper(movies: moviesProvider.onDisplayMovies),
+            UpcomingSwiper(
+                movies: moviesProvider.upcomingMovies, title: 'Proximamente'),
+            NowPlayingmovie(
+                movies: moviesProvider.onDisplayMovies,
+                title: 'Ultimas', 
+                onNextPage: () => moviesProvider.getNowPlayingMovies()),
+            //CardSwiper(movies: moviesProvider.onDisplayMovies),
             MovieSlider(
               movies: moviesProvider.popularMovies, // populares,
               title: 'Populares', // opcional

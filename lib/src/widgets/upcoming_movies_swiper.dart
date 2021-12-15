@@ -2,18 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:movie_app/src/models/models.dart';
 
-class CardSwiper extends StatelessWidget {
+class UpcomingSwiper extends StatelessWidget {
   final List<Movie> movies;
-  const CardSwiper({Key? key, required this.movies}) : super(key: key);
+  final String? title;
+  const UpcomingSwiper({Key? key, this.title, required this.movies}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      width: double.infinity,
-      height: size.height * 0.5,
-      child: movies.length > 3
-          ? Swiper(
+    return SizedBox(
+        width: double.infinity,
+        height: size.height * 0.5,
+        child: movies.length > 3 ?
+          Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (title != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                title!,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Swiper(
               itemCount: movies.length,
               layout: SwiperLayout.STACK,
               itemWidth: size.width * 0.6,
@@ -29,7 +41,7 @@ class CardSwiper extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: FadeInImage(
-                        placeholder: AssetImage('assets/no-image.jpg'),
+                        placeholder: const AssetImage('assets/no-image.jpg'),
                         image: NetworkImage(movie.fullPosterImg),
                         fit: BoxFit.cover,
                       ),
@@ -37,8 +49,10 @@ class CardSwiper extends StatelessWidget {
                   ),
                 );
               },
-            )
-          : null,
+            ),
+          ],
+        )
+        : null,
     );
   }
 }

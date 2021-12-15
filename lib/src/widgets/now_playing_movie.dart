@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/src/models/models.dart';
 
-class MovieSlider extends StatefulWidget {
+class NowPlayingmovie extends StatefulWidget {
   final List<Movie> movies;
   final String? title;
   final Function onNextPage;
 
-  const MovieSlider({
+  const NowPlayingmovie({
     Key? key,
     required this.movies,
     required this.onNextPage,
@@ -14,10 +14,10 @@ class MovieSlider extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MovieSliderState createState() => _MovieSliderState();
+  _NowPlayingmovieState createState() => _NowPlayingmovieState();
 }
 
-class _MovieSliderState extends State<MovieSlider> {
+class _NowPlayingmovieState extends State<NowPlayingmovie> {
   final ScrollController scrollController = ScrollController();
 
   @override

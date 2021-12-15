@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:movie_app/src/models/models.dart';
 import 'package:movie_app/src/providers/movies_provider.dart';
-import 'package:provider/provider.dart';
 
 class CastingCards extends StatelessWidget {
   final int movieId;
 
+
+  // ignore: use_key_in_widget_constructors
   const CastingCards(this.movieId);
 
   @override
@@ -17,24 +20,36 @@ class CastingCards extends StatelessWidget {
       builder: (_, AsyncSnapshot<List<Cast>> snapshot) {
         if (!snapshot.hasData) {
           return Container(
-            constraints: BoxConstraints(maxWidth: 150),
+            constraints: const BoxConstraints(maxWidth: 150),
             height: 180,
-            child: CupertinoActivityIndicator(),
+            child: const CupertinoActivityIndicator(),
           );
         }
 
         final List<Cast> cast = snapshot.data!;
 
-        return Container(
-          margin: EdgeInsets.only(bottom: 10),
+        return
+        Container(
           width: double.infinity,
-          height: 200,
-          child: ListView.builder(
-              itemCount: cast.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (_, int index) {
-                return _CastCard(cast[index]);
-              }),
+          height: 260,
+          margin: const EdgeInsets.only(bottom: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text('Cast', style: Theme.of(context).textTheme.headline6),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: cast.length,
+                  itemBuilder: (BuildContext context, int index){
+                    return  _CastCard(cast[index]);
+                  }),
+              ),
+            ],
+          )
         );
       },
     );
@@ -48,7 +63,7 @@ class _CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    return Container(
+    return SizedBox(
       height: 150,
       width: 115,
       child: Column(
@@ -56,14 +71,14 @@ class _CastCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
+              placeholder: const AssetImage('assets/no-image.jpg'),
               image: NetworkImage(actor.fullprofilePath!),
               height: 130,
               width: 100,
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
@@ -73,7 +88,7 @@ class _CastCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: textTheme.subtitle1!.copyWith(fontSize: 12),
           ),
-          SizedBox(
+          const SizedBox(
             height: 2.5,
           ),
           Text(
