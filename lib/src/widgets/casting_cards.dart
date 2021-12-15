@@ -19,11 +19,10 @@ class CastingCards extends StatelessWidget {
       future: moviesProvider.getMovieCast(movieId),
       builder: (_, AsyncSnapshot<List<Cast>> snapshot) {
         if (!snapshot.hasData) {
-          return Container(
-            constraints: const BoxConstraints(maxWidth: 150),
-            height: 180,
-            child: const CupertinoActivityIndicator(),
-          );
+          return const SizedBox(
+              height: 260,
+              child: CupertinoActivityIndicator(),
+            );
         }
 
         final List<Cast> cast = snapshot.data!;
@@ -32,7 +31,7 @@ class CastingCards extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 260,
-          margin: const EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -64,7 +63,7 @@ class _CastCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return SizedBox(
-      height: 150,
+      height: 100,
       width: 115,
       child: Column(
         children: [

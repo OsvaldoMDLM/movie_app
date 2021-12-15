@@ -73,7 +73,7 @@ class CardRecommend extends StatelessWidget {
       onTap: () =>
           Navigator.pushNamed(context, 'details', arguments: movieRecommend),
       child: Container(
-        width: 110,
+        width: 100,
         margin: const EdgeInsets.all(8),
         child: Column(
           children: [
@@ -83,6 +83,7 @@ class CardRecommend extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: FadeInImage(
                   width: 100,
+                  height: 150,
                   fit: BoxFit.cover,
                   placeholder: const AssetImage('assets/no-image.jpg'),
                   image: NetworkImage(movieRecommend.fullPosterImg),

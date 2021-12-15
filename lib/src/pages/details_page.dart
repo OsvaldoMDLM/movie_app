@@ -70,6 +70,7 @@ class _PosterAndTitle extends StatelessWidget {
               child: FadeInImage(
                 placeholder: const AssetImage('assets/no-image.jpg'),
                 image: NetworkImage(movie.fullPosterImg),
+                width: 135,
                 height: 200,
               ),
             ),
