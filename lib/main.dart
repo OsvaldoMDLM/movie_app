@@ -4,7 +4,7 @@ import 'package:movie_app/src/pages/pages.dart';
 import 'package:movie_app/src/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(AppState());
+void main() => runApp(const AppState());
 
 class AppState extends StatelessWidget {
   const AppState({Key? key}) : super(key: key);
@@ -18,28 +18,31 @@ class AppState extends StatelessWidget {
           lazy: false,
         )
       ],
+      // ignore: prefer_const_constructors
       child: App(),
     );
   }
 }
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Peliculas',
       theme: ThemeData.light().copyWith(
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
         elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
+        systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.light),
       )),
       initialRoute: 'home',
       routes: {
-        'home': (_) => HomePage(),
-        'details': (_) => DetailPage(),
+        'home': (_) => const HomePage(),
+        'details': (_) => const DetailPage(),
       },
     );
   }

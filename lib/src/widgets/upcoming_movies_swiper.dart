@@ -9,9 +9,8 @@ class UpcomingSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
         width: double.infinity,
         height: size.height * 0.5,
         child: movies.length > 3 ?
@@ -20,10 +19,10 @@ class UpcomingSwiper extends StatelessWidget {
           children: [
             if (title != null)
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                this.title!,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                title!,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Swiper(
@@ -42,7 +41,7 @@ class UpcomingSwiper extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: FadeInImage(
-                        placeholder: AssetImage('assets/no-image.jpg'),
+                        placeholder: const AssetImage('assets/no-image.jpg'),
                         image: NetworkImage(movie.fullPosterImg),
                         fit: BoxFit.cover,
                       ),

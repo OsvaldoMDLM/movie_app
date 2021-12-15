@@ -8,13 +8,13 @@ class MovieSearchDelegate extends SearchDelegate {
   String? get searchFieldLabel => 'Buscar';
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [IconButton(onPressed: () => query = '', icon: Icon(Icons.clear))];
+    return [IconButton(onPressed: () => query = '', icon: const Icon(Icons.clear))];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-        onPressed: () => {close(context, null)}, icon: Icon(Icons.arrow_back));
+        onPressed: () => {close(context, null)}, icon: const Icon(Icons.arrow_back));
   }
 
   @override
@@ -37,13 +37,11 @@ class MovieSearchDelegate extends SearchDelegate {
   }
 
   Widget _emptyContainer() {
-    return Container(
-      child: Center(
-        child: Icon(
-          Icons.movie_creation_outlined,
-          color: Colors.black38,
-          size: 150,
-        ),
+    return const Center(
+      child: Icon(
+        Icons.movie_creation_outlined,
+        color: Colors.black38,
+        size: 150,
       ),
     );
   }
@@ -80,7 +78,7 @@ class _MovieItem extends StatelessWidget {
         tag: movie.heroId!,
         child: FadeInImage(
           image: NetworkImage(movie.fullPosterImg),
-          placeholder: AssetImage('assets/no-image.jpg'),
+          placeholder: const AssetImage('assets/no-image.jpg'),
           width: 50,
           fit: BoxFit.contain,
         ),

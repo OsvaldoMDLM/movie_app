@@ -9,6 +9,7 @@ class CastingCards extends StatelessWidget {
   final int movieId;
 
 
+  // ignore: use_key_in_widget_constructors
   const CastingCards(this.movieId);
 
   @override
@@ -19,9 +20,9 @@ class CastingCards extends StatelessWidget {
       builder: (_, AsyncSnapshot<List<Cast>> snapshot) {
         if (!snapshot.hasData) {
           return Container(
-            constraints: BoxConstraints(maxWidth: 150),
+            constraints: const BoxConstraints(maxWidth: 150),
             height: 180,
-            child: CupertinoActivityIndicator(),
+            child: const CupertinoActivityIndicator(),
           );
         }
 
@@ -62,7 +63,7 @@ class _CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    return Container(
+    return SizedBox(
       height: 150,
       width: 115,
       child: Column(
@@ -87,7 +88,7 @@ class _CastCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: textTheme.subtitle1!.copyWith(fontSize: 12),
           ),
-          SizedBox(
+          const SizedBox(
             height: 2.5,
           ),
           Text(

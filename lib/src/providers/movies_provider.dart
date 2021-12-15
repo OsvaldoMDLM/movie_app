@@ -15,14 +15,13 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
   List<Movie> upcomingMovies = [];
-  List<Genre> genres = [];
-
+  
   Map<int, List<Cast>> moviesCast = {};
   Map<int, List<Movie>> moviesRecommend = {};
 
   int _popularPage = 0;
 
-  final debouncer = Debouncer(duration: Duration(milliseconds: 500));
+  final debouncer = Debouncer(duration: const Duration(milliseconds: 500));
 
   final StreamController<List<Movie>> _searchStreamController =
       StreamController.broadcast();
@@ -95,12 +94,12 @@ class MoviesProvider extends ChangeNotifier {
   void getSuggestionsByQuery(String searchTerm) {
     debouncer.value = '';
     debouncer.onValue = (value) async {
-      final results = await this.searchMovie(value);
+      final results = await searchMovie(value);
       _searchStreamController.add(results);
     };
-    final timer = Timer.periodic(Duration(milliseconds: 300), (_) {
+    final timer = Timer.periodic(const Duration(milliseconds: 300), (_) {
       debouncer.value = searchTerm;
     });
-    Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
+    Future.delayed(const Duration(milliseconds: 301)).then((_) => timer.cancel());
   }
 }

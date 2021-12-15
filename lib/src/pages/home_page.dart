@@ -5,6 +5,8 @@ import 'package:movie_app/src/widgets/widgets.dart';
 import 'package:movie_app/src/search/search_delegate.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context);

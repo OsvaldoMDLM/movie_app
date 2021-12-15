@@ -35,12 +35,14 @@ class MoviesRecommend extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (title != null)
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text(title,
-                          style: Theme.of(context).textTheme.headline6),
-                    ),
+                  // ignore: unnecessary_null_comparison
+                  (title != null)
+                      ? Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(title,
+                              style: Theme.of(context).textTheme.headline6),
+                        )
+                      : const Text('no data'),
                   Expanded(
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -60,6 +62,7 @@ class CardRecommend extends StatelessWidget {
   final Movie movieRecommend;
   final String title;
 
+  // ignore: use_key_in_widget_constructors
   const CardRecommend(this.movieRecommend, this.title);
 
   @override
@@ -67,37 +70,37 @@ class CardRecommend extends StatelessWidget {
     movieRecommend.heroId = 'recommend-${movieRecommend.id}';
 
     return GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'details',
-                arguments: movieRecommend),
-            child: Container(
-              width: 110,
-              margin: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  Hero(
-                    tag: movieRecommend.heroId!,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: FadeInImage(
-                        width: 100,
-                        fit: BoxFit.cover,
-                        placeholder: const AssetImage('assets/no-image.jpg'),
-                        image: NetworkImage(movieRecommend.fullPosterImg),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      movieRecommend.title,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  )
-                ],
+      onTap: () =>
+          Navigator.pushNamed(context, 'details', arguments: movieRecommend),
+      child: Container(
+        width: 110,
+        margin: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Hero(
+              tag: movieRecommend.heroId!,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: FadeInImage(
+                  width: 100,
+                  fit: BoxFit.cover,
+                  placeholder: const AssetImage('assets/no-image.jpg'),
+                  image: NetworkImage(movieRecommend.fullPosterImg),
+                ),
               ),
             ),
-          );
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                movieRecommend.title,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
