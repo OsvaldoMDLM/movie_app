@@ -1,6 +1,27 @@
 # movie_app
 
-A new Flutter project.
+ A movie app using the API [TMDB](https://www.themoviedb.org/documentation/api, "TMDB")
+ 
+ ## ToDos
+- [ ] Redesign UI 
+- [ ] Dark mode support
+- [ ] Trailers
+- [ ] Actor details page
+- [x] Search
+- [x] Recomended movies
+- [x] Cast 
+- [x] Movie details page
+- [x] Now playing movies
+- [x] Popular movies
+- [x] Upcoming movies
+ 
+ <div>
+  <img src="https://github.com/OsvaldoMDLM/movie_app/blob/master/assets/first.jpg" width="150">
+  <img src="https://github.com/OsvaldoMDLM/movie_app/blob/master/assets/details-movie.jpg" width="150">
+  <img src="https://github.com/OsvaldoMDLM/movie_app/blob/master/assets/details.jpg" width="150">
+  <img src="https://github.com/OsvaldoMDLM/movie_app/blob/master/assets/search.jpg" width="150">
+
+ </div>
 
 ## Getting Started
 
