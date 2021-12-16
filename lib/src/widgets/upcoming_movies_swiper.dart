@@ -69,7 +69,7 @@ class _SliderMovie extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: FadeInImage(
                             placeholder:
-                                const NetworkImage('assets/no-image.jpg'),
+                                const AssetImage('assets/no-image.jpg'),
                             image: NetworkImage(movie.fullPosterImg),
                             fit: BoxFit.cover,
                           ),
